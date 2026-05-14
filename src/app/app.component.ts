@@ -1,12 +1,23 @@
 import { Component } from '@angular/core';
-
+import { BookService } from './services/book.service';
+import { FormComponent } from './components/form/form.component';
+import { FormsModule } from '@angular/forms';
+import { ListComponent } from './components/list/list.component';
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [],
   templateUrl: './app.component.html',
+  standalone: true,
+  imports: [FormsModule, FormComponent, ListComponent],
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'bookshelf-angular';
+
+  constructor(private bookService: BookService) { }
+
+
+  ngOnInit() {
+    this.bookService.loadBooksFromApi();
+  }
+
+
 }

@@ -1,0 +1,31 @@
+<h2>Lista Libri</h2>
+
+@if (books().length === 0) {
+  <p>Nessun libro presente 📚</p>
+}
+
+@for (book of books(); track book.id) {
+
+  <div class="book-item">
+
+    <h3>{{ book.title }}</h3>
+    <p>{{ book.author }}</p>
+
+    <p>
+      Stato:
+      <strong>
+        {{ book.read ? 'Letto' : 'Da leggere' }}
+      </strong>
+    </p>
+
+    <button (click)="toggle(book.id)">
+      Toggle letto
+    </button>
+
+    <button (click)="remove(book.id)">
+      Elimina
+    </button>
+
+  </div>
+
+}
