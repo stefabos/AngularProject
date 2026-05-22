@@ -12,11 +12,11 @@ export class ListComponent {
 
   books = this.bookservice.books
 
-  remove(id: string |number){
+  remove(id: string){
     this.bookservice.removeBook(id)
 
   }
-  toggle(id: string |number){
+  toggle(id:  string){
     this.bookservice.toggleRead(id)
   }
 

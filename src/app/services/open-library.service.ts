@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { OpenLibraryBook } from '../models/openLibraryBook.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,14 +9,16 @@ export class OpenLibraryService {
 
 private httpClient = inject(HttpClient)
 
-private baseUrl = 'https://openlibrary.org/search.json?q=fiction&limit=10';
+private baseUrl = 'http://localhost:8080/libri';
 
-getBoooks(query : string = 'fiction'){
-  const url = `${this.baseUrl}q=${query}&limit=10`
+getBoooks(){
+  
 
-  return this.httpClient.get<any>(url).pipe(
-    map(resp=> resp.docs)
-  )
+  return this.httpClient.get<any[]>(this.baseUrl);
+}
+postBooks(book : OpenLibraryBook){
+    return this.httpClient.post<OpenLibraryBook>(this.baseUrl, book);
+
 }
 
 }

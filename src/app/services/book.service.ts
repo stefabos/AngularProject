@@ -22,7 +22,7 @@ export class BookService {
 
   addBook(book: Omit<Book, 'id'>) {
     const newBook: Book = {
-      id: Date.now(),
+      id: "i",
       ...book
     };
 
@@ -31,11 +31,11 @@ export class BookService {
       newBook
     ]);
   }
-  removeBook(id: string |number) {
+  removeBook(id:  string) {
     this.books.update(currentBooks => currentBooks.filter(book => book.id !== id));
 
   };
-  toggleRead(id:string |number){
+  toggleRead(id: string){
     this.books.update(currentBooks => currentBooks.map(book=>book.id === id ? {...book, read: !book.read}
       : book
     ));
@@ -44,13 +44,13 @@ export class BookService {
     loadBooksFromApi(){
     
   
-      this.api.getBoooks('fiction').subscribe(data=>{
+      this.api.getBoooks().subscribe(data=>{
 
         this.books.set(
           data.map((b:OpenLibraryBook): Book=> ({
-            id: b.key,
-            title: b.title,
-            author: b.author_name?.[0]||'Unknown',
+            id: b.id,
+            title: b.titolo,
+            author: b.autore||'Unknown',
             read: false
           }))
         )

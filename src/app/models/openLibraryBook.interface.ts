@@ -1,5 +1,5 @@
 export interface OpenLibraryBook {
-  key: string | number;
-  title: string;
-  author_name?: string[];
+  id: string;
+  titolo: string;
+  autore?: string;
 }
